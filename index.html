@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav{
+    display: flex;
+    height: 10vh;
+    background-color: rgb(194, 92, 92);
+    justify-content: space-around;
+    align-items: center;
+    color: rgb(219, 198, 198);
+}
+/* .nav .text{
+    letter-spacing: 5px;
+} */
+.item{
+    width: 30%;
+}
+.menu-item{
+    justify-content: space-around;
+    display: flex;
+}
+
+.menu-item  li{
+    /* margin: 5px; */
+    list-style: none;
+    font-weight: bold;
+    
+}
+.menu-item  li a{
+    text-decoration: none;
+    color: rgb(219, 198, 198);
+}
+.menu{
+display: none;
+cursor: pointer;
+margin: 10px;
+}
+.menu div{
+    width: 25px;
+    height: 3px;
+    margin: 5px;
+    background-color: rgb(219, 198, 198);
+    transition: all 0.2s ease;
+}
+
+@media screen and (max-width:1024px){
+    .item{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width:700px){
+    body{
+        overflow-x: hidden;
+    }
+    .text{
+        font-size: 1.1em;
+        max-width: 100px;
+        width: 100%;
+        margin: 10px;
+    }
+.menu{
+    display: block;
+}
+.menu-item{
+    position: fixed;
+    top: 10vh;
+    right: 0;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    background-color: rgb(194, 92, 92);
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+}
+.menu-item li{
+    opacity: 0;
+}
+.activate-item{
+    transform: translateX(0%);
+}
+}
+@keyframes animation{
+    from{
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.toggle .line1{
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.toggle .line2{
+    opacity: 0;
+}
+.toggle .line3{
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="text">
+            <h1>Nav bar</h1>
+        </div>
+        <div class="item">
+            <ul class="menu-item">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Security</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="menu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+    <script>
+        const menu=document.querySelector('.menu');
+const nav=document.querySelector('.menu-item');
+const item=document.querySelectorAll('.menu-item li');
+menu.addEventListener('click',()=>{
+    nav.classList.toggle('activate-item');
+    
+    item.forEach((link,index)=>{
+        if(link.style.animation){link.style.animation=''}
+        else{
+        link.style.animation=`animation 0.5s ease forwards ${index/5+0.3}s`;}
+    } );
+    menu.classList.toggle('toggle');
+});
+    </script>
+</body>
+</html>
